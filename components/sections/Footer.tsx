@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="px-14 py-8 border-t border-[var(--border)] flex flex-col sm:flex-row justify-between items-center gap-3">
+    <footer className="px-4 sm:px-6 lg:px-14 py-6 sm:py-8 border-t border-[var(--border)] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
       <span className="text-[12px] text-[var(--t3)]">
         © {new Date().getFullYear()} Yash Amol Kankal
       </span>

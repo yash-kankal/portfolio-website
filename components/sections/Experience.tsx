@@ -151,7 +151,7 @@ function StackingCards() {
           style={{ minHeight: i < jobs.length - 1 ? "220px" : "auto" }}
         >
           <div
-            className="exp-card-inner bg-[var(--bg)] border border-[var(--border)] rounded-2xl p-[52px] max-sm:p-8"
+            className="exp-card-inner bg-[var(--bg)] border border-[var(--border)] rounded-2xl p-6 sm:p-8 lg:p-[52px]"
             style={{
               position: "sticky",
               top: `${96 + i * 12}px`,
@@ -175,7 +175,7 @@ function StackingCards() {
                 </div>
                 <p className="text-[14px] text-[var(--t2)]">{job.role}</p>
               </div>
-              <div className="text-right shrink-0">
+              <div className="text-left sm:text-right shrink-0">
                 <p className="text-[12px] font-medium text-[var(--t3)] tracking-[0.06em] uppercase">{job.period}</p>
                 <p className="text-[12px] text-[var(--t3)] mt-1">{job.location}</p>
               </div>
@@ -196,8 +196,8 @@ function StackingCards() {
 
 export default function Experience() {
   return (
-    <section id="experience" className="px-14 py-[120px]">
-      <div className="flex items-end justify-between mb-[72px] pb-6 border-b border-[var(--border)]">
+    <section id="experience" className="px-4 sm:px-6 lg:px-14 py-20 sm:py-24 lg:py-[120px]">
+      <div className="flex items-end justify-between mb-10 sm:mb-14 lg:mb-[72px] pb-6 border-b border-[var(--border)]">
         <div>
           <p className="text-[11px] font-medium tracking-[0.14em] uppercase text-[var(--t3)] mb-3">
             03 / Experience

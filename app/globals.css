@@ -218,3 +218,26 @@ body {
 .contact-link:hover {
   color: var(--t1);
 }
+
+@media (max-width: 767px) {
+  html,
+  body {
+    cursor: auto;
+  }
+
+  .hero-name {
+    line-height: 0.92;
+    white-space: normal;
+  }
+
+  .exp-card-wrapper {
+    min-height: auto !important;
+  }
+
+  .exp-card-inner {
+    position: static !important;
+    top: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

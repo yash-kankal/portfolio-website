@@ -54,17 +54,17 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex flex-col justify-end px-14 pt-[80px] pb-[72px] relative overflow-hidden"
+      className="min-h-screen flex flex-col justify-end px-4 pt-[96px] pb-10 sm:px-6 sm:pb-14 lg:px-14 lg:pt-[80px] lg:pb-[72px] relative overflow-hidden"
     >
 
       {/* Name — full-width fit text */}
       <div className="hero-name-clip mb-[3px]">
-        <span id="hero-first" className="hero-name">
+        <span id="hero-first" className="hero-name whitespace-normal sm:whitespace-nowrap">
           Yash
         </span>
       </div>
       <div className="hero-name-clip">
-        <span id="hero-last" className="hero-name delay-1">
+        <span id="hero-last" className="hero-name delay-1 whitespace-normal sm:whitespace-nowrap">
           Kankal
         </span>
       </div>
@@ -74,9 +74,9 @@ export default function Hero() {
         id="hero-bottom"
         className="reveal mt-9"
       >
-        <div className="h-px bg-[var(--border)] mb-8" />
+        <div className="h-px bg-[var(--border)] mb-6 sm:mb-8" />
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
-          <p className="text-[20px] leading-[1.65] font-[300] text-[var(--t1)] max-w-[520px]">
+          <p className="text-[16px] sm:text-[18px] lg:text-[20px] leading-[1.65] font-[300] text-[var(--t1)] max-w-[520px]">
             <strong className="font-[600]">
               Full Stack Developer
             </strong>{" "}
@@ -87,10 +87,10 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-col items-start sm:items-end gap-[10px] shrink-0">
-            <span className="text-[15px] font-[500] text-[var(--t1)] tracking-[0.02em]">
+            <span className="text-[13px] sm:text-[14px] lg:text-[15px] font-[500] text-[var(--t1)] tracking-[0.02em]">
               MS Information Technology · ASU · 2025
             </span>
-            <span className="text-[15px] font-[500] text-[var(--t1)] tracking-[0.02em]">
+            <span className="text-[13px] sm:text-[14px] lg:text-[15px] font-[500] text-[var(--t1)] tracking-[0.02em]">
               TypeScript · Node.js · React · AWS
             </span>
             <div className="flex items-center gap-2 mt-1">

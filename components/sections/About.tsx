@@ -12,9 +12,9 @@ const details = [
 
 export default function About() {
   return (
-    <section id="about" className="py-[120px] overflow-hidden">
+    <section id="about" className="py-20 sm:py-24 lg:py-[120px] overflow-hidden">
       {/* Section header */}
-      <div className="px-14 mb-[72px] pb-6 border-b border-[var(--border)]">
+      <div className="px-4 sm:px-6 lg:px-14 mb-10 sm:mb-14 lg:mb-[72px] pb-6 border-b border-[var(--border)]">
         <p className="text-[11px] font-[500] tracking-[0.14em] uppercase text-[var(--t3)] mb-3">
           01 / About
         </p>
@@ -24,10 +24,10 @@ export default function About() {
       </div>
 
       {/* Photo + content row */}
-      <div className="flex items-stretch gap-0">
+      <div className="flex flex-col lg:flex-row items-stretch gap-8 lg:gap-0">
 
         {/* ── Photo ── */}
-        <div className="relative shrink-0 w-[38%] min-h-[520px]">
+        <div className="relative shrink-0 w-full lg:w-[38%] min-h-[360px] sm:min-h-[460px] lg:min-h-[520px]">
           <div className="absolute inset-0 overflow-hidden">
             <Image
               src="/projects/profile.jpg"
@@ -49,13 +49,13 @@ export default function About() {
           />
           {/* Feather: right — wide, soft */}
           <div
-            className="absolute inset-y-0 right-0 w-[55%] pointer-events-none"
+            className="absolute inset-y-0 right-0 w-[55%] hidden lg:block pointer-events-none"
             style={{ background: "linear-gradient(to right, transparent 0%, var(--bg) 100%)" }}
           />
         </div>
 
         {/* ── Content — sits clearly to the right of the photo ── */}
-        <div className="relative z-10 flex-1 ml-[2%] pr-14 flex flex-col justify-center">
+        <div className="relative z-10 flex-1 px-4 sm:px-6 lg:px-0 lg:ml-[2%] lg:pr-14 flex flex-col justify-center">
 
           {/* Name + role */}
           <RevealOnScroll>
@@ -71,7 +71,7 @@ export default function About() {
 
           {/* Bio */}
           <RevealOnScroll delay={80}>
-            <div className="space-y-4 text-[17px] leading-[1.85] font-[300] text-[var(--t2)] mb-12">
+            <div className="space-y-4 text-[15px] sm:text-[16px] lg:text-[17px] leading-[1.85] font-[300] text-[var(--t2)] mb-10 lg:mb-12">
               <p>
                 I&apos;m a{" "}
                 <strong className="text-[var(--t1)] font-[500]">Full Stack Developer</strong>{" "}

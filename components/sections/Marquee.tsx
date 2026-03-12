@@ -25,12 +25,12 @@ export default function Marquee() {
   const doubled = [...ITEMS, ...ITEMS];
 
   return (
-    <div className="overflow-hidden border-t border-b border-[var(--border)] py-[28px]">
+    <div className="overflow-hidden border-t border-b border-[var(--border)] py-5 sm:py-6 lg:py-[28px]">
       <div className="flex whitespace-nowrap marquee-track">
         {doubled.map((item, i) => (
           <span
             key={i}
-            className="inline-flex items-center gap-[8px] text-[14px] font-[600] tracking-[0.1em] uppercase text-[var(--t1)] px-10 shrink-0"
+            className="inline-flex items-center gap-[8px] text-[12px] sm:text-[13px] lg:text-[14px] font-[600] tracking-[0.1em] uppercase text-[var(--t1)] px-5 sm:px-7 lg:px-10 shrink-0"
           >
             <TechIcon name={item} size={16} colored />
             {item}

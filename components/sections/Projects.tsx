@@ -73,8 +73,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
     >
       {/* ── Screenshot preview ── */}
       <div
-        className="relative w-full overflow-hidden"
-        style={{ height: "260px" }}
+        className="relative w-full overflow-hidden h-[220px] sm:h-[240px] lg:h-[260px]"
       >
         <Image
           src={project.image}
@@ -110,8 +109,8 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       </div>
 
       {/* ── Card body ── */}
-      <div className="px-8 pb-8 pt-5">
-        <h3 className="text-[22px] font-bold tracking-[-0.025em] leading-tight mb-3">
+      <div className="px-5 sm:px-6 lg:px-8 pb-6 sm:pb-7 lg:pb-8 pt-5">
+        <h3 className="text-[20px] sm:text-[21px] lg:text-[22px] font-bold tracking-[-0.025em] leading-tight mb-3">
           {project.title}
         </h3>
 
@@ -119,7 +118,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
           className="text-[13px] leading-[1.75] font-light mb-6"
           style={{
             color: "var(--t2)",
-            maxHeight: hovered ? "200px" : "60px",
+            maxHeight: hovered ? "200px" : index === 0 ? "84px" : "60px",
             overflow: "hidden",
             transition: "max-height 0.5s cubic-bezier(0.16,1,0.3,1), color 0.3s",
           }}
@@ -151,8 +150,8 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 
 export default function Projects() {
   return (
-    <section id="projects" className="px-14 pb-[120px]" style={{ paddingTop: 0 }}>
-      <div className="flex items-end justify-between mb-[72px] pb-6 border-b border-[var(--border)]">
+    <section id="projects" className="px-4 sm:px-6 lg:px-14 pb-20 sm:pb-24 lg:pb-[120px]" style={{ paddingTop: 0 }}>
+      <div className="flex items-end justify-between mb-10 sm:mb-14 lg:mb-[72px] pb-6 border-b border-[var(--border)]">
         <div>
           <p className="text-[11px] font-medium tracking-[0.14em] uppercase text-[var(--t3)] mb-3">
             04 / Projects

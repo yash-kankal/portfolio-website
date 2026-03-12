@@ -34,8 +34,8 @@ const skills = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="px-14 pb-[120px]" style={{ paddingTop: 0 }}>
-      <div className="flex items-end justify-between mb-[72px] pb-6 border-b border-[var(--border)]">
+    <section id="skills" className="px-4 sm:px-6 lg:px-14 pb-20 sm:pb-24 lg:pb-[120px]" style={{ paddingTop: 0 }}>
+      <div className="flex items-end justify-between mb-10 sm:mb-14 lg:mb-[72px] pb-6 border-b border-[var(--border)]">
         <div>
           <p className="text-[11px] font-medium tracking-[0.14em] uppercase text-[var(--t3)] mb-3">
             02 / Stack
@@ -49,7 +49,7 @@ export default function Skills() {
       <div>
         {skills.map((row, i) => (
           <RevealOnScroll key={row.cat} delay={i * 50}>
-            <div className="grid grid-cols-[180px_1fr] gap-12 py-6 border-b border-[var(--border)] first:border-t first:border-[var(--border)] max-sm:grid-cols-1 max-sm:gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-3 sm:gap-8 lg:gap-12 py-5 sm:py-6 border-b border-[var(--border)] first:border-t first:border-[var(--border)]">
               <span className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[var(--t2)] pt-1">
                 {row.cat}
               </span>
@@ -57,7 +57,7 @@ export default function Skills() {
                 {row.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="stag inline-flex items-center gap-[6px] text-[14px] font-[500] text-[var(--t1)] px-[14px] py-[6px] border border-[var(--border)] rounded-full cursor-default hover:border-[var(--border2)] transition-all"
+                    className="stag inline-flex items-center gap-[6px] text-[13px] sm:text-[14px] font-[500] text-[var(--t1)] px-3 sm:px-[14px] py-[6px] border border-[var(--border)] rounded-full cursor-default hover:border-[var(--border2)] transition-all"
                   >
                     <TechIcon name={tag} size={13} className="shrink-0" colored />
                     {tag}

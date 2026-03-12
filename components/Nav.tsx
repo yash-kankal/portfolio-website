@@ -26,13 +26,13 @@ export default function Nav() {
     <nav
       className={`nav-base fixed top-0 left-0 right-0 z-[100] flex items-center justify-between transition-all duration-300 ${
         scrolled
-          ? "px-14 py-[18px] bg-[rgba(250,250,250,0.92)] backdrop-blur-2xl border-b border-[var(--border)]"
-          : "px-14 py-8 bg-[rgba(250,250,250,0.85)] backdrop-blur-xl"
+          ? "px-4 py-4 sm:px-6 sm:py-5 lg:px-14 lg:py-[18px] bg-[rgba(250,250,250,0.92)] backdrop-blur-2xl border-b border-[var(--border)]"
+          : "px-4 py-4 sm:px-6 sm:py-6 lg:px-14 lg:py-8 bg-[rgba(250,250,250,0.85)] backdrop-blur-xl"
       }`}
     >
       <button
         onClick={() => scrollTo("hero")}
-        className="text-[17px] font-mono font-semibold text-[var(--t1)] hover:opacity-70 transition-opacity cursor-none"
+        className="text-[15px] sm:text-[17px] font-mono font-semibold text-[var(--t1)] hover:opacity-70 transition-opacity cursor-none"
       >
         <span className="text-orange-500">&lt;</span>
         Yash
@@ -41,7 +41,7 @@ export default function Nav() {
         <span className="text-orange-500">&gt;</span>
       </button>
 
-      <div className="flex items-center gap-9">
+      <div className="hidden md:flex items-center gap-6 lg:gap-9">
         {["about", "experience", "projects"].map((id) => (
           <button
             key={id}
@@ -58,6 +58,13 @@ export default function Nav() {
           Get in Touch
         </button>
       </div>
+
+      <button
+        onClick={() => scrollTo("contact")}
+        className="md:hidden nav-cta text-[12px] font-[500] text-[var(--t1)] border border-[var(--border2)] px-4 py-2 rounded-full hover:bg-[#0a0a0a] hover:text-white hover:border-[#0a0a0a] transition-all cursor-none"
+      >
+        Contact
+      </button>
     </nav>
   );
 }
