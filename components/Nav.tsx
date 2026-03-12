@@ -32,13 +32,13 @@ export default function Nav() {
     >
       <button
         onClick={() => scrollTo("hero")}
-        className="text-[15px] sm:text-[17px] font-mono font-semibold text-[var(--t1)] hover:opacity-70 transition-opacity cursor-none"
+        className="text-[17px] sm:text-[20px] lg:text-[22px] font-mono font-semibold text-[var(--t1)] hover:opacity-70 transition-opacity cursor-none"
       >
         <span className="text-orange-500">&lt;</span>
         Yash
-        <span className="text-[var(--t3)]"> / </span>
+        <span className="text-[var(--t3)]"> </span>
         Kankal
-        <span className="text-orange-500">&gt;</span>
+        <span className="text-orange-500">/&gt;</span>
       </button>
 
       <div className="hidden md:flex items-center gap-6 lg:gap-9">

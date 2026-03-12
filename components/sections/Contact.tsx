@@ -1,13 +1,32 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { FiCheck, FiCopy } from "react-icons/fi";
 import RevealOnScroll from "@/components/RevealOnScroll";
 
 const links = [
-  { label: "yashamolkankal@outlook.com", href: "mailto:yashamolkankal@outlook.com", icon: "✉" },
   { label: "LinkedIn", href: "https://linkedin.com/in/yashkankal", icon: "↗" },
   { label: "GitHub", href: "https://github.com/yash-kankal", icon: "↗" },
-  { label: "+1 602-565-5915", href: "tel:+16025655915", icon: "✆" },
 ];
 
 export default function Contact() {
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!copied) return;
+    const timeout = window.setTimeout(() => setCopied(false), 1600);
+    return () => window.clearTimeout(timeout);
+  }, [copied]);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("yashamolkankal@outlook.com");
+      setCopied(true);
+    } catch {
+      setCopied(false);
+    }
+  };
+
   return (
     <section
       id="contact"
@@ -26,15 +45,32 @@ export default function Contact() {
 
       <RevealOnScroll delay={150}>
         <div className="flex flex-col sm:flex-row sm:flex-wrap border-t border-[var(--border)]">
+          <div className="flex items-center justify-between gap-4 px-0 sm:px-8 py-5 sm:py-6 border-b sm:border-b-0 sm:border-r border-[var(--border)] first:pl-0">
+            <a
+              href="mailto:yashamolkankal@outlook.com"
+              className="contact-link flex items-center gap-3 text-[18px] sm:text-[20px] lg:text-[22px] text-[var(--t1)] font-[500] cursor-none transition-colors"
+            >
+              <span className="opacity-50 text-[20px]">✉</span>
+              <span className="break-all">yashamolkankal@outlook.com</span>
+            </a>
+            <button
+              type="button"
+              onClick={copyEmail}
+              aria-label="Copy email address"
+              className="inline-flex items-center justify-center w-11 h-11 rounded-full border border-[var(--border)] text-[var(--t2)] hover:text-[var(--t1)] hover:border-[var(--border2)] transition-colors cursor-none shrink-0"
+            >
+              {copied ? <FiCheck size={18} /> : <FiCopy size={18} />}
+            </button>
+          </div>
           {links.map((l) => (
             <a
               key={l.label}
               href={l.href}
               target={l.href.startsWith("http") ? "_blank" : undefined}
               rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="contact-link flex items-center gap-[10px] text-[13px] text-[var(--t2)] font-[400] px-0 sm:px-8 py-4 sm:py-5 border-b sm:border-b-0 sm:border-r border-[var(--border)] first:pl-0 cursor-none hover:text-[var(--t1)] transition-colors"
+              className="contact-link flex items-center gap-3 text-[18px] sm:text-[20px] lg:text-[22px] text-[var(--t1)] font-[500] px-0 sm:px-8 py-5 sm:py-6 border-b sm:border-b-0 sm:border-r border-[var(--border)] first:pl-0 cursor-none hover:text-[var(--t1)] transition-colors"
             >
-              <span className="opacity-50 text-base">{l.icon}</span>
+              <span className="opacity-50 text-[20px]">{l.icon}</span>
               {l.label}
             </a>
           ))}
