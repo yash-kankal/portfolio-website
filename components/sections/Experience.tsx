@@ -80,18 +80,14 @@ function StackingCards() {
     const container = containerRef.current;
     if (!container) return;
 
-    const cards = Array.from(
-      container.querySelectorAll<HTMLElement>(".exp-card-inner")
-    );
-    const wrappers = Array.from(
-      container.querySelectorAll<HTMLElement>(".exp-card-wrapper")
-    );
+    const cards = Array.from(container.querySelectorAll<HTMLElement>(".exp-card-inner"));
+    const wrappers = Array.from(container.querySelectorAll<HTMLElement>(".exp-card-wrapper"));
 
-    const SCALE_STEP = 0.04;
-    const OPACITY_STEP = 0.12;
-    const STICKY_TOP = 96; // px — must match CSS sticky top
+    const STICKY_TOP = 96;
 
     const onScroll = () => {
+      const vh = window.innerHeight;
+
       wrappers.forEach((wrapper, i) => {
         const card = cards[i];
         if (!card) return;
@@ -99,56 +95,49 @@ function StackingCards() {
         const rect = wrapper.getBoundingClientRect();
         const cardHeight = card.offsetHeight;
 
-        // How far has this wrapper scrolled past its sticky point?
-        // When rect.top <= STICKY_TOP, the card is stuck.
-        // progress goes from 0 (just stuck) to 1 (wrapper bottom at sticky top)
         if (rect.top > STICKY_TOP) {
-          // Card hasn't reached sticky point yet — reset
-          card.style.transform = "scale(1) translateY(0)";
-          card.style.opacity = "1";
+          // Card not yet sticky — drive entrance pop animation
+          const entryProgress = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.58)));
+          const scale = 0.91 + entryProgress * 0.09;
+          const translateY = (1 - entryProgress) * 52;
+          const opacity = 0.15 + entryProgress * 0.85;
+          card.style.transform = `scale(${scale}) translateY(${translateY}px)`;
+          card.style.opacity = String(opacity);
           return;
         }
 
+        // Card is sticky — drive retract animation as next card scrolls over
         const scrolledPast = STICKY_TOP - rect.top;
         const wrapperScrollable = wrapper.offsetHeight - cardHeight - STICKY_TOP;
         const progress = Math.max(0, Math.min(1, scrolledPast / Math.max(wrapperScrollable, 1)));
 
-        // Scale this card down as the next one scrolls over it
-        const scale = 1 - progress * SCALE_STEP;
-        const opacity = 1 - progress * OPACITY_STEP;
-        const translateY = -progress * 12; // subtle upward drift
+        const scale = 1 - progress * 0.06;
+        const opacity = Math.max(0.35, 1 - progress * 0.22);
+        const translateY = -progress * 18;
 
         card.style.transform = `scale(${scale}) translateY(${translateY}px)`;
-        card.style.opacity = String(Math.max(0.4, opacity));
+        card.style.opacity = String(opacity);
       });
     };
 
-    // Hook into Lenis or fallback to window scroll
     const w = window as unknown as { __lenis?: { on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } };
-    if (w.__lenis) {
-      w.__lenis.on("scroll", onScroll);
-    } else {
-      window.addEventListener("scroll", onScroll, { passive: true });
-    }
+    if (w.__lenis) w.__lenis.on("scroll", onScroll);
+    else window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
     return () => {
-      if (w.__lenis) {
-        w.__lenis.off("scroll", onScroll);
-      } else {
-        window.removeEventListener("scroll", onScroll);
-      }
+      if (w.__lenis) w.__lenis.off("scroll", onScroll);
+      else window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} className="flex flex-col gap-5 sm:gap-6">
       {jobs.map((job, i) => (
         <div
           key={job.company}
           className="exp-card-wrapper"
-          /* Each wrapper is tall enough to give scroll room to the card below */
-          style={{ minHeight: i < jobs.length - 1 ? "220px" : "auto" }}
+          style={{ minHeight: i < jobs.length - 1 ? "280px" : "auto" }}
         >
           <div
             className="exp-card-inner bg-[var(--bg)] border border-[var(--border)] rounded-2xl p-6 sm:p-8 lg:p-[52px]"
@@ -196,7 +185,7 @@ function StackingCards() {
 
 export default function Experience() {
   return (
-    <section id="experience" className="px-4 sm:px-6 lg:px-14 py-20 sm:py-24 lg:py-[120px]">
+    <section id="experience" className="px-4 sm:px-6 lg:px-14 py-12 sm:py-14 lg:py-[72px]">
       <div className="flex items-end justify-between mb-10 sm:mb-14 lg:mb-[72px] pb-6 border-b border-[var(--border)]">
         <div>
           <p className="text-[11px] font-medium tracking-[0.14em] uppercase text-[var(--t3)] mb-3">

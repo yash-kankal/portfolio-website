@@ -150,7 +150,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 
 export default function Projects() {
   return (
-    <section id="projects" className="px-4 sm:px-6 lg:px-14 pb-20 sm:pb-24 lg:pb-[120px]" style={{ paddingTop: 0 }}>
+    <section id="projects" className="px-4 sm:px-6 lg:px-14 pb-12 sm:pb-14 lg:pb-[72px]" style={{ paddingTop: 0 }}>
       <div className="flex items-end justify-between mb-10 sm:mb-14 lg:mb-[72px] pb-6 border-b border-[var(--border)]">
         <div>
           <p className="text-[11px] font-medium tracking-[0.14em] uppercase text-[var(--t3)] mb-3">
