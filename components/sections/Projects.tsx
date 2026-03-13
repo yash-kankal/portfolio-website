@@ -17,7 +17,7 @@ const projects = [
   {
     num: "02",
     title: "SnyderMovies",
-    desc: "IMDb alternative — browse ratings, trailers, cast & crew for any movie. Built with React 19, Vite, and React Router v6. Fetches live data from TMDB API across 8+ endpoints. Zero backend, zero state-management library — all state lives in URL params or local useState, keeping the bundle tiny.",
+    desc: "IMDb alternative for browsing ratings, trailers, cast and crew for any movie. Built with React 19, Vite, and React Router v6. Fetches live data from TMDB API across 8+ endpoints. Zero backend, zero state-management library, all state lives in URL params or local useState keeping the bundle tiny.",
     image: "/projects/snydermovies.png",
     accent: "#0d0d2b",
     href: "https://snydermovies.vercel.app/",
