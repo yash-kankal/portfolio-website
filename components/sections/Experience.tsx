@@ -95,7 +95,7 @@ function JobCards() {
                 <p className="text-[14px] text-[var(--t2)]">{job.role}</p>
               </div>
               <div className="text-left sm:text-right shrink-0">
-                <p className="text-[12px] font-medium text-[var(--t3)] tracking-[0.06em] uppercase">{job.period}</p>
+                <p className="text-[12px] font-medium text-[var(--t1)] tracking-[0.06em] uppercase">{job.period}</p>
                 <p className="text-[12px] text-[var(--t3)] mt-1">{job.location}</p>
               </div>
             </div>

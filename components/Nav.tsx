@@ -50,7 +50,7 @@ export default function Nav() {
         {["about", "experience", "projects"].map((id) => (
           <button
             key={id}
-            onClick={() => scrollTo(id)}
+            onClick={() => scrollTo(id === "about" ? "about-content" : id)}
             className="text-[13px] font-[400] tracking-[0.02em] text-[var(--t2)] hover:text-[var(--t1)] transition-colors capitalize cursor-pointer"
           >
             {id === "experience" ? "Work Experience" : id.charAt(0).toUpperCase() + id.slice(1)}

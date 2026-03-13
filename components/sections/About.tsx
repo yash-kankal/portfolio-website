@@ -24,7 +24,7 @@ export default function About() {
       </div>
 
       {/* Photo + content row */}
-      <div className="flex flex-col lg:flex-row items-stretch gap-8 lg:gap-0">
+      <div id="about-content" className="flex flex-col lg:flex-row items-stretch gap-8 lg:gap-0">
 
         {/* ── Photo ── */}
         <div className="relative shrink-0 w-full lg:w-[38%] min-h-[360px] sm:min-h-[460px] lg:min-h-[520px]">
