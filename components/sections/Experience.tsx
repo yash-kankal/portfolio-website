@@ -84,6 +84,16 @@ function StackingCards() {
     const wrappers = Array.from(container.querySelectorAll<HTMLElement>(".exp-card-wrapper"));
 
     const STICKY_TOP = 96;
+    const RETRACT_RANGE = 260; // px of scroll over which retract animates
+
+    // Set wrapper heights dynamically so retract has a real scroll range
+    wrappers.forEach((wrapper, i) => {
+      if (i < wrappers.length - 1) {
+        const card = cards[i];
+        const cardH = card ? card.offsetHeight : 320;
+        wrapper.style.minHeight = `${cardH + STICKY_TOP + RETRACT_RANGE}px`;
+      }
+    });
 
     const onScroll = () => {
       const vh = window.innerHeight;
@@ -93,7 +103,6 @@ function StackingCards() {
         if (!card) return;
 
         const rect = wrapper.getBoundingClientRect();
-        const cardHeight = card.offsetHeight;
 
         if (rect.top > STICKY_TOP) {
           // Card not yet sticky — drive entrance pop animation
@@ -108,8 +117,7 @@ function StackingCards() {
 
         // Card is sticky — drive retract animation as next card scrolls over
         const scrolledPast = STICKY_TOP - rect.top;
-        const wrapperScrollable = wrapper.offsetHeight - cardHeight - STICKY_TOP;
-        const progress = Math.max(0, Math.min(1, scrolledPast / Math.max(wrapperScrollable, 1)));
+        const progress = Math.max(0, Math.min(1, scrolledPast / RETRACT_RANGE));
 
         const scale = 1 - progress * 0.06;
         const opacity = Math.max(0.35, 1 - progress * 0.22);
@@ -137,7 +145,7 @@ function StackingCards() {
         <div
           key={job.company}
           className="exp-card-wrapper"
-          style={{ minHeight: i < jobs.length - 1 ? "280px" : "auto" }}
+          style={{ minHeight: i === jobs.length - 1 ? "auto" : undefined }}
         >
           <div
             className="exp-card-inner bg-[var(--bg)] border border-[var(--border)] rounded-2xl p-6 sm:p-8 lg:p-[52px]"
