@@ -76,29 +76,26 @@ export default function Hero() {
       >
         <div className="h-px bg-[var(--border)] mb-6 sm:mb-8" />
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
-          <p className="text-[16px] sm:text-[18px] lg:text-[20px] leading-[1.65] font-[300] text-[var(--t1)] max-w-[520px]">
-            <strong className="font-[600]">
-              Full Stack Developer
-            </strong>{" "}
-            crafting production-grade backends, real-time systems, and scalable APIs,
-            turning complex problems into clean, shippable products.{" "}
-            Currently building at{" "}
-            <strong className="font-[600]">DriverAI</strong>.
+          <p className="flex-1 text-[16px] sm:text-[18px] lg:text-[20px] leading-[1.75] font-[300] text-[var(--t1)]">
+            <strong className="font-[600]">Full Stack Developer</strong> with{" "}
+            <strong className="font-[600]">3+ years</strong> of professional experience building
+            production systems across the full stack. Specialized in backend architecture with{" "}
+            <strong className="font-[600]">Node.js, FastAPI, and PostgreSQL</strong>, real-time
+            infrastructure using <strong className="font-[600]">WebSockets and event-driven
+            microservices</strong>, and cloud deployments on{" "}
+            <strong className="font-[600]">AWS</strong> (Lambda, ECS, S3, RDS, Kinesis).
+            On the frontend, ships fast, polished UIs with{" "}
+            <strong className="font-[600]">React and Next.js</strong>, extending to native mobile
+            with <strong className="font-[600]">Kotlin</strong> and{" "}
+            <strong className="font-[600]">SwiftUI</strong>.
+            Currently building at <strong className="font-[600]">DriverAI</strong>.
           </p>
 
-          <div className="flex flex-col items-start sm:items-end gap-[10px] shrink-0">
-            <span className="text-[13px] sm:text-[14px] lg:text-[15px] font-[500] text-[var(--t1)] tracking-[0.02em]">
-              MS Information Technology · ASU · 2025
+          <div className="flex items-center gap-2 shrink-0 self-end">
+            <div className="w-8 h-px bg-[var(--t3)] scroll-line-anim" />
+            <span className="text-[11px] tracking-[0.12em] uppercase text-[var(--t3)]">
+              Scroll
             </span>
-            <span className="text-[13px] sm:text-[14px] lg:text-[15px] font-[500] text-[var(--t1)] tracking-[0.02em]">
-              TypeScript · Node.js · React · AWS
-            </span>
-            <div className="flex items-center gap-2 mt-1">
-              <div className="w-8 h-px bg-[var(--t3)] scroll-line-anim" />
-              <span className="text-[11px] tracking-[0.12em] uppercase text-[var(--t3)]">
-                Scroll
-              </span>
-            </div>
           </div>
         </div>
       </div>
