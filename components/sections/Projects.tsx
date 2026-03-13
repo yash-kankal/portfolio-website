@@ -16,6 +16,15 @@ const projects = [
   },
   {
     num: "02",
+    title: "SnyderMovies",
+    desc: "IMDb alternative — browse ratings, trailers, cast & crew for any movie. Built with React 19, Vite, and React Router v6. Fetches live data from TMDB API across 8+ endpoints. Zero backend, zero state-management library — all state lives in URL params or local useState, keeping the bundle tiny.",
+    image: "/projects/snydermovies.png",
+    accent: "#0d0d2b",
+    href: "https://snydermovies.vercel.app/",
+    stack: ["React.js", "Vite", "React Router", "Tailwind CSS", "TMDB API"],
+  },
+  {
+    num: "03",
     title: "AI Health Chatbot",
     desc: "Full-stack AI-powered health assistant with calorie tracking, meal logging, and personalized nutrition workflows. Integrates OpenAI API for recipe recommendations and context-aware guidance through a conversational interface.",
     image: "/projects/aichatbot.png",
@@ -162,7 +171,7 @@ export default function Projects() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {projects.map((p, i) => (
           <ProjectCard key={p.num} project={p} index={i} />
         ))}
