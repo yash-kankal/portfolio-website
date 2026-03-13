@@ -7,8 +7,8 @@
   --border: rgba(0, 0, 0, 0.08);
   --border2: rgba(0, 0, 0, 0.16);
   --t1: #0a0a0a;
-  --t2: #666666;
-  --t3: #bbbbbb;
+  --t2: #444444;
+  --t3: #888888;
   --green: #16a34a;
   --font: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
 }
@@ -18,7 +18,7 @@ html {
   background: var(--bg);
   color: var(--t1);
   overflow-x: hidden;
-  cursor: none;
+  cursor: auto;
 }
 
 * {
@@ -30,43 +30,6 @@ body {
   color: var(--t1);
 }
 
-/* ── Cursor ── */
-.cursor-dot {
-  width: 7px;
-  height: 7px;
-  background: #0a0a0a;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s, height 0.3s;
-}
-
-.cursor-ring {
-  width: 36px;
-  height: 36px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.3s;
-}
-
-.cursor-dot.hovering {
-  width: 0;
-  height: 0;
-}
-
-.cursor-ring.hovering {
-  width: 72px;
-  height: 72px;
-  border-color: rgba(0, 0, 0, 0.4);
-}
 
 /* ── Reveal animation ── */
 .reveal {

@@ -1,7 +1,5 @@
-import Cursor from "@/components/Cursor";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import Nav from "@/components/Nav";
-import SectionStack from "@/components/SectionStack";
 import Hero from "@/components/sections/Hero";
 import Marquee from "@/components/sections/Marquee";
 import About from "@/components/sections/About";
@@ -16,7 +14,6 @@ export default function Home() {
     <>
       {/* Client providers — no markup */}
       <SmoothScrollProvider />
-      <Cursor />
 
       {/* Navigation */}
       <Nav />
@@ -25,12 +22,10 @@ export default function Home() {
       <main>
         <Hero />
         <Marquee />
-        <SectionStack>
-          <About />
-          <Skills />
-          <Experience />
-          <Projects />
-        </SectionStack>
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
         <Contact />
         <Footer />
       </main>

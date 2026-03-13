@@ -48,7 +48,7 @@ export default function Contact() {
           <div className="flex items-center justify-between gap-4 px-0 sm:px-8 py-5 sm:py-6 border-b sm:border-b-0 sm:border-r border-[var(--border)] first:pl-0">
             <a
               href="mailto:yashamolkankal@outlook.com"
-              className="contact-link flex items-center gap-3 text-[18px] sm:text-[20px] lg:text-[22px] text-[var(--t1)] font-[500] cursor-none transition-colors"
+              className="contact-link flex items-center gap-3 text-[18px] sm:text-[20px] lg:text-[22px] text-[var(--t1)] font-[500] cursor-pointer transition-colors"
             >
               <span className="opacity-50 text-[20px]">✉</span>
               <span className="break-all">yashamolkankal@outlook.com</span>
@@ -57,7 +57,7 @@ export default function Contact() {
               type="button"
               onClick={copyEmail}
               aria-label="Copy email address"
-              className="inline-flex items-center justify-center w-11 h-11 rounded-full border border-[var(--border)] text-[var(--t2)] hover:text-[var(--t1)] hover:border-[var(--border2)] transition-colors cursor-none shrink-0"
+              className="inline-flex items-center justify-center w-11 h-11 rounded-full border border-[var(--border)] text-[var(--t2)] hover:text-[var(--t1)] hover:border-[var(--border2)] transition-colors cursor-pointer shrink-0"
             >
               {copied ? <FiCheck size={18} /> : <FiCopy size={18} />}
             </button>
@@ -68,7 +68,7 @@ export default function Contact() {
               href={l.href}
               target={l.href.startsWith("http") ? "_blank" : undefined}
               rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="contact-link flex items-center gap-3 text-[18px] sm:text-[20px] lg:text-[22px] text-[var(--t1)] font-[500] px-0 sm:px-8 py-5 sm:py-6 border-b sm:border-b-0 sm:border-r border-[var(--border)] first:pl-0 cursor-none hover:text-[var(--t1)] transition-colors"
+              className="contact-link flex items-center gap-3 text-[18px] sm:text-[20px] lg:text-[22px] text-[var(--t1)] font-[500] px-0 sm:px-8 py-5 sm:py-6 border-b sm:border-b-0 sm:border-r border-[var(--border)] first:pl-0 cursor-pointer hover:text-[var(--t1)] transition-colors"
             >
               <span className="opacity-50 text-[20px]">{l.icon}</span>
               {l.label}

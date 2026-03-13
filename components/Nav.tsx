@@ -14,11 +14,16 @@ export default function Nav() {
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
+    const navEl = document.querySelector("nav");
+    const navH = navEl ? navEl.getBoundingClientRect().height : 80;
+    const sectionPt = parseFloat(getComputedStyle(el).paddingTop) || 0;
+    const offset = -(navH - sectionPt) - 18;
     const w = window as unknown as { __lenis?: { scrollTo: (el: Element, opts: object) => void } };
     if (w.__lenis) {
-      w.__lenis.scrollTo(el, { offset: -80 });
+      w.__lenis.scrollTo(el, { offset });
     } else {
-      el.scrollIntoView({ behavior: "smooth" });
+      const top = el.getBoundingClientRect().top + window.scrollY + offset;
+      window.scrollTo({ top, behavior: "smooth" });
     }
   };
 
@@ -32,13 +37,13 @@ export default function Nav() {
     >
       <button
         onClick={() => scrollTo("hero")}
-        className="text-[17px] sm:text-[20px] lg:text-[22px] font-mono font-semibold text-[var(--t1)] hover:opacity-70 transition-opacity cursor-none"
+        className="text-[19px] sm:text-[22px] lg:text-[24px] font-mono font-semibold text-[var(--t1)] hover:opacity-70 transition-opacity cursor-pointer"
       >
-        <span className="text-orange-500">&lt;</span>
+        <span className="text-orange-400">&lt;</span>
         Yash
         <span className="text-[var(--t3)]"> </span>
         Kankal
-        <span className="text-orange-500">/&gt;</span>
+        <span className="text-orange-400">/&gt;</span>
       </button>
 
       <div className="hidden md:flex items-center gap-6 lg:gap-9">
@@ -46,14 +51,14 @@ export default function Nav() {
           <button
             key={id}
             onClick={() => scrollTo(id)}
-            className="text-[13px] font-[400] tracking-[0.02em] text-[var(--t2)] hover:text-[var(--t1)] transition-colors capitalize cursor-none"
+            className="text-[13px] font-[400] tracking-[0.02em] text-[var(--t2)] hover:text-[var(--t1)] transition-colors capitalize cursor-pointer"
           >
-            {id === "experience" ? "Work" : id.charAt(0).toUpperCase() + id.slice(1)}
+            {id === "experience" ? "Work Experience" : id.charAt(0).toUpperCase() + id.slice(1)}
           </button>
         ))}
         <button
           onClick={() => scrollTo("contact")}
-          className="nav-cta text-[13px] font-[500] text-[var(--t1)] border border-[var(--border2)] px-5 py-[9px] rounded-full hover:bg-[#0a0a0a] hover:text-white hover:border-[#0a0a0a] transition-all cursor-none"
+          className="nav-cta text-[13px] font-[500] text-white bg-orange-400 border border-orange-400 px-5 py-[9px] rounded-full hover:bg-orange-500 hover:border-orange-500 transition-all cursor-pointer"
         >
           Get in Touch
         </button>
@@ -61,7 +66,7 @@ export default function Nav() {
 
       <button
         onClick={() => scrollTo("contact")}
-        className="md:hidden nav-cta text-[12px] font-[500] text-[var(--t1)] border border-[var(--border2)] px-4 py-2 rounded-full hover:bg-[#0a0a0a] hover:text-white hover:border-[#0a0a0a] transition-all cursor-none"
+        className="md:hidden nav-cta text-[12px] font-[500] text-[var(--t1)] border border-[var(--border2)] px-4 py-2 rounded-full hover:bg-[#0a0a0a] hover:text-white hover:border-[#0a0a0a] transition-all cursor-pointer"
       >
         Contact
       </button>

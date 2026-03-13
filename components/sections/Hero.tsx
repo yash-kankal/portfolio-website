@@ -75,12 +75,12 @@ export default function Hero() {
         className="reveal mt-9"
       >
         <div className="h-px bg-[var(--border)] mb-6 sm:mb-8" />
-        <p className="text-center text-[16px] sm:text-[18px] lg:text-[20px] leading-[1.75] font-[300] text-[var(--t1)]">
+        <p className="text-justify text-[15px] sm:text-[17px] lg:text-[19px] leading-[1.75] font-[300] text-[var(--t1)]">
           <strong className="font-[600]">Full Stack Developer</strong> with{" "}
           <strong className="font-[600]">3+ years</strong> of professional experience building
           production systems across the full stack. Specialized in backend architecture with{" "}
           <strong className="font-[600]">Node.js, FastAPI, and PostgreSQL</strong>, real-time
-          infrastructure using <strong className="font-[600]">WebSockets and event-driven
+          infrastructure using <strong className="font-[600]">event-driven
           microservices</strong>, and cloud deployments on{" "}
           <strong className="font-[600]">AWS</strong> (Lambda, ECS, S3, RDS, Kinesis).
           On the frontend, ships fast, polished UIs with{" "}

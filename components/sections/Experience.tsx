@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 type BP = { text: string; bold: boolean };
 
@@ -72,93 +72,15 @@ const jobs = [
   },
 ];
 
-/* ── Stacking card scroll driver ── */
-function StackingCards() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const cards = Array.from(container.querySelectorAll<HTMLElement>(".exp-card-inner"));
-    const wrappers = Array.from(container.querySelectorAll<HTMLElement>(".exp-card-wrapper"));
-
-    const STICKY_TOP = 96;
-    const RETRACT_RANGE = 260; // px of scroll over which retract animates
-
-    // Set wrapper heights dynamically so retract has a real scroll range
-    wrappers.forEach((wrapper, i) => {
-      if (i < wrappers.length - 1) {
-        const card = cards[i];
-        const cardH = card ? card.offsetHeight : 320;
-        wrapper.style.minHeight = `${cardH + STICKY_TOP + RETRACT_RANGE}px`;
-      }
-    });
-
-    const onScroll = () => {
-      const vh = window.innerHeight;
-
-      wrappers.forEach((wrapper, i) => {
-        const card = cards[i];
-        if (!card) return;
-
-        const rect = wrapper.getBoundingClientRect();
-
-        if (rect.top > STICKY_TOP) {
-          // Card not yet sticky — drive entrance pop animation
-          const entryProgress = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.58)));
-          const scale = 0.91 + entryProgress * 0.09;
-          const translateY = (1 - entryProgress) * 52;
-          const opacity = 0.15 + entryProgress * 0.85;
-          card.style.transform = `scale(${scale}) translateY(${translateY}px)`;
-          card.style.opacity = String(opacity);
-          return;
-        }
-
-        // Card is sticky — drive retract animation as next card scrolls over
-        const scrolledPast = STICKY_TOP - rect.top;
-        const progress = Math.max(0, Math.min(1, scrolledPast / RETRACT_RANGE));
-
-        const scale = 1 - progress * 0.06;
-        const opacity = Math.max(0.35, 1 - progress * 0.22);
-        const translateY = -progress * 18;
-
-        card.style.transform = `scale(${scale}) translateY(${translateY}px)`;
-        card.style.opacity = String(opacity);
-      });
-    };
-
-    const w = window as unknown as { __lenis?: { on: (e: string, fn: () => void) => void; off: (e: string, fn: () => void) => void } };
-    if (w.__lenis) w.__lenis.on("scroll", onScroll);
-    else window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-
-    return () => {
-      if (w.__lenis) w.__lenis.off("scroll", onScroll);
-      else window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
-
+function JobCards() {
   return (
-    <div ref={containerRef} className="flex flex-col gap-5 sm:gap-6">
-      {jobs.map((job, i) => (
+    <div className="flex flex-col gap-5 sm:gap-6">
+      {jobs.map((job) => (
         <div
           key={job.company}
-          className="exp-card-wrapper"
-          style={{ minHeight: i === jobs.length - 1 ? "auto" : undefined }}
+          className="bg-[var(--bg)] border border-[var(--border)] rounded-2xl p-6 sm:p-8 lg:p-[52px]"
+          style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 4px 24px rgba(0,0,0,0.04)" }}
         >
-          <div
-            className="exp-card-inner bg-[var(--bg)] border border-[var(--border)] rounded-2xl p-6 sm:p-8 lg:p-[52px]"
-            style={{
-              position: "sticky",
-              top: `${96 + i * 12}px`,
-              transformOrigin: "top center",
-              transition: "box-shadow 0.3s",
-              willChange: "transform, opacity",
-              zIndex: 10 + i,
-              boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 4px 24px rgba(0,0,0,0.04)",
-            }}
-          >
             {/* Card header */}
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-8 pb-6 border-b border-[var(--border)]">
               <div>
@@ -184,7 +106,6 @@ function StackingCards() {
                 <Bullet key={j} text={b} />
               ))}
             </ul>
-          </div>
         </div>
       ))}
     </div>
@@ -193,19 +114,19 @@ function StackingCards() {
 
 export default function Experience() {
   return (
-    <section id="experience" className="px-4 sm:px-6 lg:px-14 py-12 sm:py-14 lg:py-[72px]">
-      <div className="flex items-end justify-between mb-10 sm:mb-14 lg:mb-[72px] pb-6 border-b border-[var(--border)]">
+    <section id="experience" className="px-4 sm:px-6 lg:px-14 pb-12 sm:pb-16 lg:pb-20" style={{ paddingTop: 0 }}>
+      <div className="flex items-end justify-between mb-8 sm:mb-10 lg:mb-12 pb-6 border-b border-[var(--border)]">
         <div>
           <p className="text-[11px] font-medium tracking-[0.14em] uppercase text-[var(--t3)] mb-3">
             03 / Experience
           </p>
           <h2 className="text-[clamp(40px,5.5vw,80px)] font-extrabold tracking-[-0.04em] leading-none">
-            Work
+            Work Experience
           </h2>
         </div>
       </div>
 
-      <StackingCards />
+      <JobCards />
     </section>
   );
 }

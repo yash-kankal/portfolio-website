@@ -12,9 +12,9 @@ const details = [
 
 export default function About() {
   return (
-    <section id="about" className="py-12 sm:py-14 lg:py-[72px] overflow-hidden">
+    <section id="about" className="py-12 sm:py-16 lg:py-20 overflow-hidden">
       {/* Section header */}
-      <div className="px-4 sm:px-6 lg:px-14 mb-10 sm:mb-14 lg:mb-[72px] pb-6 border-b border-[var(--border)]">
+      <div className="px-4 sm:px-6 lg:px-14 mb-8 sm:mb-10 lg:mb-12 pb-6 border-b border-[var(--border)]">
         <p className="text-[11px] font-[500] tracking-[0.14em] uppercase text-[var(--t3)] mb-3">
           01 / About
         </p>

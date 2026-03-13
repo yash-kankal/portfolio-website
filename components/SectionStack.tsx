@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, Children, type ReactNode } from "react";
 
-const STICKY_BASE = 80; // px below navbar
-const STEP = 10;        // extra offset per card so they fan out slightly
-const RETRACT_RANGE = 220;
+const STICKY_BASE = 80;
+const STEP = 10;
+const RETRACT_RANGE = 240;
 
 export default function SectionStack({ children }: { children: ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -16,15 +16,15 @@ export default function SectionStack({ children }: { children: ReactNode }) {
     const wrappers = Array.from(
       container.querySelectorAll<HTMLElement>(":scope > .sc-wrap")
     );
-    const inners = Array.from(
-      container.querySelectorAll<HTMLElement>(":scope > .sc-wrap > .sc-inner")
+    const rings = Array.from(
+      container.querySelectorAll<HTMLElement>(":scope > .sc-wrap > .sc-ring")
     );
 
     const setHeights = () => {
       wrappers.forEach((wrapper, i) => {
         if (i < wrappers.length - 1) {
-          const inner = inners[i];
-          const h = inner ? inner.offsetHeight : window.innerHeight;
+          const ring = rings[i];
+          const h = ring ? ring.offsetHeight : window.innerHeight;
           wrapper.style.minHeight = `${h + STICKY_BASE + i * STEP + RETRACT_RANGE}px`;
         }
       });
@@ -36,22 +36,28 @@ export default function SectionStack({ children }: { children: ReactNode }) {
     const onScroll = () => {
       const vh = window.innerHeight;
       wrappers.forEach((wrapper, i) => {
-        const inner = inners[i];
-        if (!inner) return;
+        const ring = rings[i];
+        if (!ring) return;
         const rect = wrapper.getBoundingClientRect();
         const stickyTop = STICKY_BASE + i * STEP;
 
         if (rect.top > stickyTop) {
-          // Entering from below — pop up
-          const p = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.65)));
-          inner.style.transform = `scale(${0.93 + p * 0.07}) translateY(${(1 - p) * 56}px)`;
-          inner.style.opacity = String(0.2 + p * 0.8);
+          // Already well in view — skip entry animation (avoids nav-click jank)
+          if (rect.top < vh * 0.6) {
+            ring.style.transform = "scale(1) translateY(0px)";
+            ring.style.opacity = "1";
+            return;
+          }
+          // Entering from below — subtle pop
+          const p = Math.max(0, Math.min(1, (vh - rect.top) / (vh * 0.6)));
+          ring.style.transform = `scale(${0.96 + p * 0.04}) translateY(${(1 - p) * 32}px)`;
+          ring.style.opacity = String(0.6 + p * 0.4);
         } else {
-          // Sticky — retract as next card covers it
+          // Sticky — retract as next card comes over
           const scrolledPast = stickyTop - rect.top;
           const p = Math.max(0, Math.min(1, scrolledPast / RETRACT_RANGE));
-          inner.style.transform = `scale(${1 - p * 0.04}) translateY(${-p * 10}px)`;
-          inner.style.opacity = String(Math.max(0.5, 1 - p * 0.18));
+          ring.style.transform = `scale(${1 - p * 0.04}) translateY(${-p * 10}px)`;
+          ring.style.opacity = String(Math.max(0.55, 1 - p * 0.16));
         }
       });
     };
@@ -79,17 +85,21 @@ export default function SectionStack({ children }: { children: ReactNode }) {
     <div ref={containerRef}>
       {items.map((child, i) => (
         <div key={i} className="sc-wrap">
+          {/* sc-ring: sticky card shell — animated by scroll driver */}
           <div
-            className="sc-inner"
+            className="sc-ring"
             style={{
               position: "sticky",
               top: `${STICKY_BASE + i * STEP}px`,
-              borderRadius: 20,
-              overflow: "hidden",
               willChange: "transform, opacity",
               transformOrigin: "top center",
+              borderRadius: 20,
               background: "var(--bg)",
               boxShadow: "0 4px 32px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04)",
+              // overflow:clip clips visually but does NOT create a scroll container,
+              // so position:sticky inside Experience still works correctly
+              overflow: "clip",
+              minHeight: "100svh",
             }}
           >
             {child}
