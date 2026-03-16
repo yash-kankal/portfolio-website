@@ -17,25 +17,33 @@ function PhoneModal({ onClose }: { onClose: () => void }) {
   const next = useCallback(() => setIdx((i) => (i + 1) % mobileScreenshots.length), []);
 
   useEffect(() => {
+    // Hide navbar while modal is open
+    const nav = document.querySelector("nav") as HTMLElement | null;
+    if (nav) nav.style.visibility = "hidden";
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
       if (e.key === "ArrowLeft") prev();
       if (e.key === "ArrowRight") next();
     };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+
+    return () => {
+      if (nav) nav.style.visibility = "";
+      window.removeEventListener("keydown", onKey);
+    };
   }, [onClose, prev, next]);
 
   return createPortal(
     <div
       className="fixed inset-0 z-50 flex items-center justify-center"
-      style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(8px)" }}
+      style={{ background: "rgba(0,0,0,0.75)", backdropFilter: "blur(12px)" }}
       onClick={onClose}
     >
       {/* Close */}
       <button
         onClick={onClose}
-        className="absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors"
+        className="absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors text-lg"
         style={{ background: "rgba(255,255,255,0.1)" }}
       >
         ✕
@@ -49,22 +57,22 @@ function PhoneModal({ onClose }: { onClose: () => void }) {
         <div
           className="relative"
           style={{
-            width: 280,
-            height: 560,
-            background: "#0f0f1a",
-            borderRadius: 40,
-            border: "3px solid rgba(255,255,255,0.12)",
-            boxShadow: "0 40px 80px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.06)",
+            width: 340,
+            height: 720,
+            background: "#0a0a14",
+            borderRadius: 50,
+            border: "3px solid rgba(255,255,255,0.14)",
+            boxShadow: "0 50px 100px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.06)",
             overflow: "hidden",
           }}
         >
           {/* Dynamic island */}
           <div
-            className="absolute top-3 left-1/2 -translate-x-1/2 z-10"
-            style={{ width: 90, height: 26, background: "#000", borderRadius: 14 }}
+            className="absolute top-4 left-1/2 -translate-x-1/2 z-10"
+            style={{ width: 100, height: 28, background: "#000", borderRadius: 16 }}
           />
           {/* Screenshot */}
-          <div className="absolute inset-0" style={{ borderRadius: 37, overflow: "hidden" }}>
+          <div className="absolute inset-0" style={{ borderRadius: 47, overflow: "hidden" }}>
             <Image
               key={idx}
               src={mobileScreenshots[idx]}
@@ -85,7 +93,6 @@ function PhoneModal({ onClose }: { onClose: () => void }) {
           >
             ←
           </button>
-          {/* Dots */}
           <div className="flex gap-2">
             {mobileScreenshots.map((_, i) => (
               <button
