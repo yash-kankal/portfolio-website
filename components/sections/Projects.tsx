@@ -43,22 +43,22 @@ function PhoneModal({ onClose }: { onClose: () => void }) {
       {/* Close */}
       <button
         onClick={onClose}
-        className="absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors text-lg"
+        className="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors text-lg z-10"
         style={{ background: "rgba(255,255,255,0.1)" }}
       >
         ✕
       </button>
 
       <div
-        className="flex flex-col items-center gap-6"
+        className="flex flex-col items-center gap-5"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Phone frame */}
+        {/* Phone frame — responsive width */}
         <div
           className="relative"
           style={{
-            width: 340,
-            height: 720,
+            width: "min(340px, 85vw)",
+            height: "min(720px, 82vh)",
             background: "#0a0a14",
             borderRadius: 50,
             border: "3px solid rgba(255,255,255,0.14)",
@@ -209,7 +209,7 @@ function WebProjectCard({ project, index }: { project: typeof webProjects[0]; in
       }}
     >
       {/* Screenshot */}
-      <div className="relative w-full overflow-hidden h-[220px] sm:h-[240px] lg:h-[260px]">
+      <div className="relative w-full overflow-hidden h-[240px] sm:h-[240px] lg:h-[260px]">
         <Image
           src={project.image}
           alt={project.title}
@@ -241,21 +241,21 @@ function WebProjectCard({ project, index }: { project: typeof webProjects[0]; in
           {project.title}
         </h3>
         <p
-          className="text-[13px] leading-[1.75] font-light mb-6"
+          className="text-[14px] sm:text-[13px] leading-[1.8] font-light mb-6"
           style={{
             color: "var(--t2)",
-            maxHeight: hovered ? "200px" : index === 0 ? "84px" : "60px",
+            maxHeight: hovered ? "300px" : "100px",
             overflow: "hidden",
             transition: "max-height 0.5s cubic-bezier(0.16,1,0.3,1)",
           }}
         >
           {project.desc}
         </p>
-        <div className="flex flex-wrap gap-[5px]">
+        <div className="flex flex-wrap gap-[6px]">
           {project.stack.map((t) => (
             <span
               key={t}
-              className="inline-flex items-center gap-[4px] text-[10px] font-medium tracking-[0.04em] text-[var(--t3)] px-[9px] py-[4px] border border-[var(--border)] rounded-full"
+              className="inline-flex items-center gap-[5px] text-[11px] sm:text-[10px] font-medium tracking-[0.04em] text-[var(--t3)] px-[10px] py-[6px] sm:px-[9px] sm:py-[4px] border border-[var(--border)] rounded-full"
               style={{
                 transition: "border-color 0.2s, color 0.2s",
                 borderColor: hovered ? "var(--border2)" : undefined,
@@ -319,7 +319,7 @@ function MobileProjectCard({ project }: { project: typeof mobileProjects[0] }) {
       }}
     >
       {/* Screenshot */}
-      <div className="relative w-full overflow-hidden h-[220px] sm:h-[240px] lg:h-[260px]">
+      <div className="relative w-full overflow-hidden h-[240px] sm:h-[240px] lg:h-[260px]">
         <Image
           src={project.image}
           alt={project.title}
@@ -349,21 +349,21 @@ function MobileProjectCard({ project }: { project: typeof mobileProjects[0] }) {
           {project.title}
         </h3>
         <p
-          className="text-[13px] leading-[1.75] font-light mb-6"
+          className="text-[14px] sm:text-[13px] leading-[1.8] font-light mb-6"
           style={{
             color: "var(--t2)",
-            maxHeight: hovered ? "300px" : "84px",
+            maxHeight: hovered ? "400px" : "100px",
             overflow: "hidden",
             transition: "max-height 0.5s cubic-bezier(0.16,1,0.3,1)",
           }}
         >
           {project.desc}
         </p>
-        <div className="flex flex-wrap gap-[5px]">
+        <div className="flex flex-wrap gap-[6px]">
           {project.stack.map((t) => (
             <span
               key={t}
-              className="inline-flex items-center gap-[4px] text-[10px] font-medium tracking-[0.04em] text-[var(--t3)] px-[9px] py-[4px] border border-[var(--border)] rounded-full"
+              className="inline-flex items-center gap-[5px] text-[11px] sm:text-[10px] font-medium tracking-[0.04em] text-[var(--t3)] px-[10px] py-[6px] sm:px-[9px] sm:py-[4px] border border-[var(--border)] rounded-full"
               style={{
                 transition: "border-color 0.2s, color 0.2s",
                 borderColor: hovered ? "var(--border2)" : undefined,
@@ -399,10 +399,14 @@ export default function Projects() {
       </div>
 
       {/* Web Apps */}
-      <div className="mb-10 sm:mb-12 lg:mb-14">
-        <p className="text-[11px] font-[500] tracking-[0.14em] uppercase text-[var(--t3)] mb-5">
-          Web Apps
-        </p>
+      <div className="mb-12 sm:mb-14 lg:mb-16">
+        <div className="flex items-center gap-4 mb-7">
+          <div className="flex-1 h-px bg-[var(--border)]" />
+          <p className="text-[15px] sm:text-[17px] font-[600] tracking-[0.12em] uppercase text-[var(--t2)]">
+            Web Apps
+          </p>
+          <div className="flex-1 h-px bg-[var(--border)]" />
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {webProjects.map((p, i) => (
             <WebProjectCard key={p.num} project={p} index={i} />
@@ -412,9 +416,13 @@ export default function Projects() {
 
       {/* Mobile Apps */}
       <div>
-        <p className="text-[11px] font-[500] tracking-[0.14em] uppercase text-[var(--t3)] mb-5">
-          Mobile Apps
-        </p>
+        <div className="flex items-center gap-4 mb-7">
+          <div className="flex-1 h-px bg-[var(--border)]" />
+          <p className="text-[15px] sm:text-[17px] font-[600] tracking-[0.12em] uppercase text-[var(--t2)]">
+            Mobile Apps
+          </p>
+          <div className="flex-1 h-px bg-[var(--border)]" />
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {mobileProjects.map((p) => (
             <MobileProjectCard key={p.num} project={p} />

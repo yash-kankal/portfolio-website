@@ -20,7 +20,7 @@ function parseBullet(s: string): BP[] {
 
 function Bullet({ text }: { text: string }): ReactNode {
   return (
-    <li className="text-[14px] leading-[1.75] text-[var(--t2)] font-light pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-[var(--t3)]">
+    <li className="text-[15px] sm:text-[14px] leading-[1.8] text-[var(--t2)] font-light pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-[var(--t3)]">
       {parseBullet(text).map((p, i) =>
         p.bold ? (
           <strong key={i} className="text-[var(--t1)] font-medium">{p.text}</strong>
@@ -35,15 +35,17 @@ function Bullet({ text }: { text: string }): ReactNode {
 const jobs = [
   {
     company: "DriverAI",
-    role: "Software Developer",
+    role: "Software Engineer",
     period: "Jan 2026 – Present",
     location: "Tempe, AZ / Remote",
     current: true,
     bullets: [
-      "Designed and optimized production-grade backend APIs using <b>FastAPI</b> and <b>PostgreSQL</b>, enforcing Pydantic schema validation, rate limiting, and centralized exception handling — reducing API response latency by <b>25%</b>.",
-      "Architected a <b>WebSocket-first real-time</b> backend layer with intelligent polling fallback to synchronize trade and session state across mobile clients, cutting perceived latency by <b>40%</b>.",
-      "Provisioned and integrated <b>AWS infrastructure</b> (RDS, S3, Lambda, App Runner) while automating CI/CD workflows through GitHub Actions, reducing provisioning overhead by <b>40%</b>.",
-      "Contributed to client-facing development across <b>React.js, Next.js, TypeScript, Kotlin/Jetpack Compose, and SwiftUI</b>, improving end-to-end feature delivery velocity by <b>30%</b>.",
+      "Architected a distributed real-time backend system using <b>WebSockets</b> and <b>Redis</b> to synchronize state across mobile clients under variable network conditions, reducing perceived latency by <b>40%</b>.",
+      "Engineered scalable backend APIs using <b>FastAPI</b> and <b>PostgreSQL</b> with schema validation, rate limiting, and centralized exception handling, reducing API response latency by <b>25%</b>.",
+      "Built a mobile-to-ML inference pipeline capturing live camera frames via <b>CameraX</b> and transmitting them to backend ML services for real-time product recognition, enabling automated visual identification across Android and iOS clients.",
+      "Automated <b>AWS infrastructure</b> provisioning (RDS, S3, Lambda, App Runner) via <b>GitHub Actions CI/CD</b> pipelines, eliminating manual deployment steps and reducing provisioning overhead by <b>40%</b>.",
+      "Applied algorithmic reasoning to optimize in-memory state propagation and real-time update flows across distributed mobile and web clients, improving feature delivery velocity by <b>30%</b>.",
+      "Developed unit and integration tests for backend APIs and real-time session workflows, improving system reliability and reducing post-release regressions.",
     ],
   },
   {
@@ -53,21 +55,21 @@ const jobs = [
     location: "Remote, USA",
     current: false,
     bullets: [
-      "Designed scalable backend APIs using <b>Node.js, Express.js, TypeScript</b> with PostgreSQL and Prisma, integrating Redis caching and Elasticsearch to reduce API response times by <b>30%</b> under high-concurrency load.",
-      "Built full-stack features with <b>React.js, Next.js, and TypeScript</b>, integrating secure API contracts and improving maintainability across shared workflows.",
-      "Automated <b>CI/CD pipelines</b> using AWS CodePipeline, GitHub Actions, and CloudFormation-based infrastructure as code, improving deployment reliability across environments.",
+      "Designed scalable backend APIs using <b>Node.js, Express.js, and TypeScript</b> with PostgreSQL and Prisma ORM; applied query optimization and Redis caching to reduce API response latency by <b>30%</b> under high-concurrency workloads.",
+      "Automated <b>CI/CD pipelines</b> using AWS CodePipeline, GitHub Actions, and CloudFormation infrastructure-as-code, eliminating manual deployment steps and reducing release cycle time across multiple environments.",
+      "Developed <b>React.js</b> and <b>Next.js</b> frontend features integrating secure REST API contracts to improve maintainability across shared application workflows.",
     ],
   },
   {
-    company: "AppWelt",
+    company: "AppWelt Pvt. Ltd",
     role: "Full Stack Developer",
     period: "Oct 2021 – Jun 2023",
     location: "Nagpur, India",
     current: false,
     bullets: [
-      "Engineered and scaled <b>12+ production microservices</b> using Node.js, Express.js, React.js, Next.js, and TypeScript, deployed on AWS EC2/ECS with Docker and GitHub Actions CI/CD, improving release velocity by <b>15%</b>.",
-      "Reduced page load time by <b>35%</b> and increased session duration by 20% through Redis caching, Elasticsearch indexing, and API-driven frontend performance optimizations.",
-      "Boosted database throughput by <b>40%</b> under peak load through targeted PostgreSQL and Prisma query optimization, along with MongoDB aggregation pipeline restructuring.",
+      "Engineered and scaled <b>12+ production microservices</b> using Node.js, Express.js, and TypeScript; deployed on AWS EC2 and ECS with Docker-based CI/CD pipelines, improving release velocity by <b>15%</b>.",
+      "Improved database throughput by <b>40%</b> under peak load through PostgreSQL query optimization, index restructuring, and MongoDB aggregation pipeline tuning for backend-heavy workloads.",
+      "Developed <b>React.js</b> and <b>Next.js</b> frontend components integrated with backend APIs, reducing page load time by <b>35%</b> and increasing session duration by 20% through Redis caching and Elasticsearch indexing.",
     ],
   },
 ];
@@ -78,14 +80,14 @@ function JobCards() {
       {jobs.map((job) => (
         <div
           key={job.company}
-          className="bg-[var(--bg)] border border-[var(--border)] rounded-2xl p-6 sm:p-8 lg:p-[52px]"
+          className="bg-[var(--bg)] border border-[var(--border)] rounded-2xl p-5 sm:p-8 lg:p-[52px]"
           style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 4px 24px rgba(0,0,0,0.04)" }}
         >
             {/* Card header */}
-            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-8 pb-6 border-b border-[var(--border)]">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-6 sm:mb-8 pb-5 sm:pb-6 border-b border-[var(--border)]">
               <div>
                 <div className="flex items-center gap-3 mb-1">
-                  <h3 className="text-[24px] font-bold tracking-[-0.025em]">{job.company}</h3>
+                  <h3 className="text-[20px] sm:text-[24px] font-bold tracking-[-0.025em]">{job.company}</h3>
                   {job.current && (
                     <span className="text-[10px] font-semibold tracking-[0.1em] uppercase text-[var(--green)] bg-[rgba(22,163,74,0.07)] border border-[rgba(22,163,74,0.18)] px-[9px] py-[3px] rounded-full">
                       Current
@@ -95,8 +97,8 @@ function JobCards() {
                 <p className="text-[14px] text-[var(--t2)]">{job.role}</p>
               </div>
               <div className="text-left sm:text-right shrink-0">
-                <p className="text-[12px] font-medium text-[var(--t1)] tracking-[0.06em] uppercase">{job.period}</p>
-                <p className="text-[12px] text-[var(--t3)] mt-1">{job.location}</p>
+                <p className="text-[13px] font-medium text-[var(--t1)] tracking-[0.06em] uppercase">{job.period}</p>
+                <p className="text-[13px] text-[var(--t3)] mt-1">{job.location}</p>
               </div>
             </div>
 

@@ -37,7 +37,7 @@ export default function Nav() {
     >
       <button
         onClick={() => scrollTo("hero")}
-        className="text-[19px] sm:text-[22px] lg:text-[24px] font-mono font-semibold text-[var(--t1)] hover:opacity-70 transition-opacity cursor-pointer"
+        className="text-[17px] sm:text-[21px] lg:text-[24px] font-mono font-semibold text-[var(--t1)] hover:opacity-70 transition-opacity cursor-pointer"
       >
         <span className="text-orange-400">&lt;</span>
         Yash
@@ -66,7 +66,7 @@ export default function Nav() {
 
       <button
         onClick={() => scrollTo("contact")}
-        className="md:hidden nav-cta text-[12px] font-[500] text-[var(--t1)] border border-[var(--border2)] px-4 py-2 rounded-full hover:bg-[#0a0a0a] hover:text-white hover:border-[#0a0a0a] transition-all cursor-pointer"
+        className="md:hidden nav-cta text-[13px] font-[500] text-[var(--t1)] border border-[var(--border2)] px-4 py-[10px] rounded-full hover:bg-[#0a0a0a] hover:text-white hover:border-[#0a0a0a] transition-all cursor-pointer"
       >
         Contact
       </button>

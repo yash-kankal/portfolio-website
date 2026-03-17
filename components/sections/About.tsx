@@ -27,7 +27,7 @@ export default function About() {
       <div id="about-content" className="flex flex-col lg:flex-row items-stretch gap-8 lg:gap-0">
 
         {/* ── Photo ── */}
-        <div className="relative shrink-0 w-full lg:w-[38%] min-h-[360px] sm:min-h-[460px] lg:min-h-[520px]">
+        <div className="relative shrink-0 w-full lg:w-[38%] min-h-[300px] sm:min-h-[420px] lg:min-h-[520px]">
           <div className="absolute inset-0 overflow-hidden">
             <Image
               src="/projects/profile.jpg"
@@ -71,7 +71,7 @@ export default function About() {
 
           {/* Bio */}
           <RevealOnScroll delay={80}>
-            <div className="space-y-4 text-[15px] sm:text-[16px] lg:text-[17px] leading-[1.85] font-[300] text-[var(--t2)] mb-10 lg:mb-12">
+            <div className="space-y-4 text-[16px] sm:text-[16px] lg:text-[17px] leading-[1.85] font-[300] text-[var(--t2)] mb-10 lg:mb-12">
               <p>
                 I&apos;m a{" "}
                 <strong className="text-[var(--t1)] font-[500]">Full Stack Developer</strong>{" "}
@@ -109,12 +109,12 @@ export default function About() {
           <div>
             {details.map((d, i) => (
               <RevealOnScroll key={d.label} delay={i * 60 + 120}>
-                <div className="flex justify-between items-baseline py-[14px] border-b border-[var(--border)] first:border-t first:border-[var(--border)]">
+                <div className="flex justify-between items-center py-4 border-b border-[var(--border)] first:border-t first:border-[var(--border)]">
                   <span className="text-[11px] font-[500] uppercase tracking-[0.1em] text-[var(--t3)]">
                     {d.label}
                   </span>
                   <span
-                    className={`text-[13px] text-right ${
+                    className={`text-[14px] text-right ${
                       d.green ? "text-[var(--green)]" : "text-[var(--t2)]"
                     }`}
                   >

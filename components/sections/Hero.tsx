@@ -54,7 +54,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex flex-col justify-end px-4 pt-[96px] pb-10 sm:px-6 sm:pb-14 lg:px-14 lg:pt-[80px] lg:pb-[72px] relative overflow-hidden"
+      className="min-h-screen flex flex-col justify-end px-4 pt-20 pb-8 sm:px-6 sm:pt-24 sm:pb-14 lg:px-14 lg:pt-[80px] lg:pb-[72px] relative overflow-hidden"
     >
 
       {/* Name — full-width fit text, centered */}
@@ -75,7 +75,7 @@ export default function Hero() {
         className="reveal mt-9"
       >
         <div className="h-px bg-[var(--border)] mb-6 sm:mb-8" />
-        <p className="text-justify text-[15px] sm:text-[17px] lg:text-[19px] leading-[1.75] font-[300] text-[var(--t1)]">
+        <p className="text-left sm:text-justify text-[16px] sm:text-[17px] lg:text-[19px] leading-[1.8] font-[300] text-[var(--t1)]">
           <strong className="font-[600]">Full Stack Developer</strong> with{" "}
           <strong className="font-[600]">3+ years</strong> of professional experience building
           production systems across the full stack. Specialized in backend architecture with{" "}

@@ -49,15 +49,15 @@ export default function Skills() {
       <div>
         {skills.map((row, i) => (
           <RevealOnScroll key={row.cat} delay={i * 50}>
-            <div className="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-3 sm:gap-8 lg:gap-12 py-5 sm:py-6 border-b border-[var(--border)] first:border-t first:border-[var(--border)]">
-              <span className="text-[12px] font-semibold uppercase tracking-[0.1em] text-[var(--t2)] pt-1">
+            <div className="grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-2 sm:gap-8 lg:gap-12 py-5 sm:py-6 border-b border-[var(--border)] first:border-t first:border-[var(--border)]">
+              <span className="text-[13px] sm:text-[12px] font-semibold uppercase tracking-[0.1em] text-[var(--t2)] pt-1">
                 {row.cat}
               </span>
-              <div className="flex flex-wrap gap-[7px]">
+              <div className="flex flex-wrap gap-[8px]">
                 {row.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="stag inline-flex items-center gap-[6px] text-[13px] sm:text-[14px] font-[500] text-[var(--t1)] px-3 sm:px-[14px] py-[6px] border border-[var(--border)] rounded-full cursor-default hover:border-[var(--border2)] transition-all"
+                    className="stag inline-flex items-center gap-[6px] text-[13px] sm:text-[14px] font-[500] text-[var(--t1)] px-[12px] sm:px-[14px] py-[9px] sm:py-[7px] border border-[var(--border)] rounded-full cursor-default hover:border-[var(--border2)] transition-all"
                   >
                     <TechIcon name={tag} size={13} className="shrink-0" colored />
                     {tag}
