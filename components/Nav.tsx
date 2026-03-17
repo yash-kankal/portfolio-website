@@ -56,6 +56,14 @@ export default function Nav() {
             {id === "experience" ? "Work Experience" : id.charAt(0).toUpperCase() + id.slice(1)}
           </button>
         ))}
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[13px] font-[400] tracking-[0.02em] text-[var(--t2)] hover:text-[var(--t1)] transition-colors cursor-pointer"
+        >
+          Resume
+        </a>
         <button
           onClick={() => scrollTo("contact")}
           className="nav-cta text-[13px] font-[500] text-white bg-orange-400 border border-orange-400 px-5 py-[9px] rounded-full hover:bg-orange-500 hover:border-orange-500 transition-all cursor-pointer"

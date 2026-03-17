@@ -71,14 +71,19 @@ export default function About() {
 
           {/* Bio */}
           <RevealOnScroll delay={80}>
-            <div className="space-y-4 text-[16px] sm:text-[16px] lg:text-[17px] leading-[1.85] font-[300] text-[var(--t2)] mb-10 lg:mb-12">
+            <div className="space-y-4 text-[16px] sm:text-[16px] lg:text-[17px] leading-[1.85] font-[300] text-[var(--t2)] mb-10 lg:mb-12 text-justify">
               <p>
                 I&apos;m a{" "}
                 <strong className="text-[var(--t1)] font-[500]">Full Stack Developer</strong>{" "}
-                with a deep focus on building backend systems that scale, from
-                WebSocket-driven real-time architectures to event-driven microservices on{" "}
+                with a deep focus on building backend systems that scale, from real-time
+                architectures to event-driven microservices on{" "}
                 <strong className="text-[var(--t1)] font-[500]">AWS</strong>. I design and ship
-                REST and GraphQL APIs backed by{" "}
+                REST and GraphQL APIs in{" "}
+                <strong className="text-[var(--t1)] font-[500]">TypeScript</strong>,{" "}
+                <strong className="text-[var(--t1)] font-[500]">Node.js</strong>,{" "}
+                <strong className="text-[var(--t1)] font-[500]">Python</strong> (FastAPI),
+                and{" "}
+                <strong className="text-[var(--t1)] font-[500]">Java</strong>, backed by{" "}
                 <strong className="text-[var(--t1)] font-[500]">PostgreSQL</strong>,{" "}
                 <strong className="text-[var(--t1)] font-[500]">Redis</strong>, and{" "}
                 <strong className="text-[var(--t1)] font-[500]">Elasticsearch</strong>, with

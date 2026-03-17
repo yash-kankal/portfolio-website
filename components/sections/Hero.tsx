@@ -5,7 +5,7 @@ import { useEffect } from "react";
 export default function Hero() {
   useEffect(() => {
     // Fit text to full container width
-    const fitText = (el: HTMLElement) => {
+    const fitText = (el: HTMLElement, multiplier: number) => {
       const parent = el.parentElement;
       if (!parent) return;
       let low = 10,
@@ -20,14 +20,14 @@ export default function Hero() {
           low = mid;
         }
       }
-      el.style.fontSize = low * 0.82 + "px";
+      el.style.fontSize = low * multiplier + "px";
     };
 
     const fit = () => {
-      ["hero-first", "hero-last"].forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) fitText(el);
-      });
+      const first = document.getElementById("hero-first");
+      const last = document.getElementById("hero-last");
+      if (first) fitText(first, 0.75); // YASH — smaller
+      if (last) fitText(last, 0.92);   // KANKAL — bigger
     };
 
     fit();
@@ -54,7 +54,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex flex-col justify-end px-4 pt-20 pb-8 sm:px-6 sm:pt-24 sm:pb-14 lg:px-14 lg:pt-[80px] lg:pb-[72px] relative overflow-hidden"
+      className="min-h-screen flex flex-col justify-center px-4 pt-16 pb-8 sm:px-6 sm:pt-20 sm:pb-14 lg:px-14 lg:pt-[80px] lg:pb-[72px] relative overflow-hidden"
     >
 
       {/* Name — full-width fit text, centered */}
