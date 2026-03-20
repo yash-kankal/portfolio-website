@@ -5,16 +5,11 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import TechIcon from "@/components/TechIcon";
 
-const mobileScreenshots = [
-  "/projects/snydernews1.png",
-  "/projects/snydernews2.png",
-];
-
-function PhoneModal({ onClose }: { onClose: () => void }) {
+function PhoneModal({ onClose, screenshots }: { onClose: () => void; screenshots: string[] }) {
   const [idx, setIdx] = useState(0);
 
-  const prev = useCallback(() => setIdx((i) => (i - 1 + mobileScreenshots.length) % mobileScreenshots.length), []);
-  const next = useCallback(() => setIdx((i) => (i + 1) % mobileScreenshots.length), []);
+  const prev = useCallback(() => setIdx((i) => (i - 1 + screenshots.length) % screenshots.length), [screenshots]);
+  const next = useCallback(() => setIdx((i) => (i + 1) % screenshots.length), [screenshots]);
 
   useEffect(() => {
     // Hide navbar while modal is open
@@ -53,35 +48,29 @@ function PhoneModal({ onClose }: { onClose: () => void }) {
         className="flex flex-col items-center gap-5"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Phone frame — responsive width */}
+        {/* Phone frame — aspect ratio matches real phone screenshots (~9:19.5) */}
         <div
           className="relative"
           style={{
-            width: "min(340px, 85vw)",
-            height: "min(720px, 82vh)",
-            background: "#0a0a14",
-            borderRadius: 50,
+            width: "min(320px, 80vw)",
+            aspectRatio: "9 / 19.5",
+            maxHeight: "80vh",
+            background: "#000",
+            borderRadius: "clamp(30px, 8vw, 50px)",
             border: "3px solid rgba(255,255,255,0.14)",
-            boxShadow: "0 50px 100px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.06)",
+            boxShadow: "0 40px 80px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.06)",
             overflow: "hidden",
           }}
         >
-          {/* Dynamic island */}
-          <div
-            className="absolute top-4 left-1/2 -translate-x-1/2 z-10"
-            style={{ width: 100, height: 28, background: "#000", borderRadius: 16 }}
+          <Image
+            key={idx}
+            src={screenshots[idx]}
+            alt={`Screenshot ${idx + 1}`}
+            fill
+            className="object-cover object-top"
+            sizes="320px"
+            style={{ transition: "opacity 0.25s ease" }}
           />
-          {/* Screenshot */}
-          <div className="absolute inset-0" style={{ borderRadius: 47, overflow: "hidden" }}>
-            <Image
-              key={idx}
-              src={mobileScreenshots[idx]}
-              alt={`Screenshot ${idx + 1}`}
-              fill
-              className="object-cover object-top"
-              style={{ transition: "opacity 0.3s" }}
-            />
-          </div>
         </div>
 
         {/* Controls */}
@@ -94,7 +83,7 @@ function PhoneModal({ onClose }: { onClose: () => void }) {
             ←
           </button>
           <div className="flex gap-2">
-            {mobileScreenshots.map((_, i) => (
+            {screenshots.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setIdx(i)}
@@ -158,7 +147,26 @@ const mobileProjects = [
     desc: "Offline-first Android news aggregator pulling from two live APIs simultaneously, deduplicating articles before saving to a local Room database. Features an on-device NLP pipeline that auto-tags articles and generates AI summaries on every background sync without an external API. Liquid-glass design system built entirely in Jetpack Compose with frosted card surfaces, gradient borders, and aurora mesh backgrounds.",
     image: "/projects/snydernews.png",
     href: "",
+    platform: "Android",
+    screenshots: ["/projects/snydernews1.png", "/projects/snydernews2.png"],
     stack: ["Kotlin", "Jetpack Compose", "MVVM", "Hilt", "Room", "Retrofit", "WorkManager", "Paging 3", "DataStore", "Coil"],
+  },
+  {
+    num: "05",
+    title: "SnyderSpend",
+    desc: "AI-powered expense tracking iOS app with real-time cloud sync across sessions. GPT-4o analyses actual spending data to deliver personalised insights, predictions, and saving opportunities. Auto-categorises every expense using AI so nothing needs to be tagged manually. Built with SwiftUI and Apple's Liquid Glass design language for a polished native feel.",
+    image: "/projects/snyderspend.png",
+    href: "",
+    platform: "iOS",
+    screenshots: [
+      "/projects/snyderspend1.png",
+      "/projects/snyderspend2.png",
+      "/projects/snyderspend3.png",
+      "/projects/snyderspend4.png",
+      "/projects/snyderspend5.png",
+      "/projects/snyderspend6.png",
+    ],
+    stack: ["SwiftUI", "Firebase Auth", "Firestore", "OpenAI GPT-4o", "Liquid Glass"],
   },
 ];
 
@@ -339,7 +347,7 @@ function MobileProjectCard({ project }: { project: typeof mobileProjects[0] }) {
           {project.num}
         </span>
         <span className="absolute top-5 right-5 text-[10px] font-medium tracking-[0.08em] uppercase text-white/60 bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full">
-          Android
+          {project.platform}
         </span>
       </div>
 
@@ -378,7 +386,7 @@ function MobileProjectCard({ project }: { project: typeof mobileProjects[0] }) {
       </div>
 
     </div>
-    {modalOpen && <PhoneModal onClose={() => setModalOpen(false)} />}
+    {modalOpen && <PhoneModal onClose={() => setModalOpen(false)} screenshots={project.screenshots} />}
     </>
   );
 }
@@ -423,7 +431,7 @@ export default function Projects() {
           </p>
           <div className="flex-1 h-px bg-[var(--border)]" />
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {mobileProjects.map((p) => (
             <MobileProjectCard key={p.num} project={p} />
           ))}
