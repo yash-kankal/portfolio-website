@@ -12,22 +12,12 @@ const details = [
 
 export default function About() {
   return (
-    <section id="about" className="py-12 sm:py-16 lg:py-20 overflow-hidden">
-      {/* Section header */}
-      <div className="px-4 sm:px-6 lg:px-14 mb-8 sm:mb-10 lg:mb-12 pb-6 border-b border-[var(--border)]">
-        <p className="text-[11px] font-[500] tracking-[0.14em] uppercase text-[var(--t3)] mb-3">
-          01 / About
-        </p>
-        <h2 className="text-[clamp(40px,5.5vw,80px)] font-[800] tracking-[-0.04em] leading-none">
-          The Story
-        </h2>
-      </div>
-
+    <section id="about" className="pt-20 sm:pt-24 lg:pt-28 pb-10 sm:pb-12 lg:pb-14 overflow-hidden">
       {/* Photo + content row */}
-      <div id="about-content" className="flex flex-col lg:flex-row items-stretch gap-8 lg:gap-0">
+      <div id="about-content" className="max-w-[1400px] mx-auto flex flex-col lg:flex-row items-stretch gap-8 lg:gap-0">
 
         {/* ── Photo ── */}
-        <div className="relative shrink-0 w-full lg:w-[38%] min-h-[300px] sm:min-h-[420px] lg:min-h-[520px]">
+        <div className="photo-mask relative shrink-0 w-full lg:w-[38%] min-h-[360px] sm:min-h-[420px] lg:min-h-[520px]">
           <div className="absolute inset-0 overflow-hidden">
             <Image
               src="/projects/profile.jpg"
@@ -37,21 +27,6 @@ export default function About() {
               priority
             />
           </div>
-          {/* Feather: top */}
-          <div
-            className="absolute inset-x-0 top-0 h-[50px] pointer-events-none"
-            style={{ background: "linear-gradient(to bottom, var(--bg) 0%, transparent 100%)" }}
-          />
-          {/* Feather: bottom */}
-          <div
-            className="absolute inset-x-0 bottom-0 h-[70px] pointer-events-none"
-            style={{ background: "linear-gradient(to top, var(--bg) 0%, transparent 100%)" }}
-          />
-          {/* Feather: right — wide, soft */}
-          <div
-            className="absolute inset-y-0 right-0 w-[55%] hidden lg:block pointer-events-none"
-            style={{ background: "linear-gradient(to right, transparent 0%, var(--bg) 100%)" }}
-          />
         </div>
 
         {/* ── Content — sits clearly to the right of the photo ── */}
@@ -59,19 +34,16 @@ export default function About() {
 
           {/* Name + role */}
           <RevealOnScroll>
-            <div className="mb-10">
-              <h3 className="text-[clamp(22px,2.2vw,34px)] font-[700] tracking-[-0.03em] leading-none mb-[6px] text-[var(--t1)]">
+            <div className="mb-5">
+              <h3 className="text-[clamp(32px,3.2vw,52px)] font-[700] tracking-[-0.03em] leading-none mb-[8px] text-[var(--t1)]">
                 Yash Amol Kankal
               </h3>
-              <p className="text-[11px] tracking-[0.12em] uppercase text-[var(--t3)]">
-                Full Stack Developer
-              </p>
             </div>
           </RevealOnScroll>
 
           {/* Bio */}
           <RevealOnScroll delay={80}>
-            <div className="space-y-4 text-[16px] sm:text-[16px] lg:text-[17px] leading-[1.85] font-[300] text-[var(--t2)] mb-10 lg:mb-12 text-justify">
+            <div className="space-y-4 text-[16px] sm:text-[16px] lg:text-[17px] leading-[1.85] font-[300] text-[var(--t2)] mb-10 lg:mb-12 text-left sm:text-justify">
               <p>
                 I&apos;m a{" "}
                 <strong className="text-[var(--t1)] font-[500]">Full Stack Developer</strong>{" "}

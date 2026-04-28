@@ -1,8 +1,7 @@
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import Nav from "@/components/Nav";
-import Hero from "@/components/sections/Hero";
-import Marquee from "@/components/sections/Marquee";
 import About from "@/components/sections/About";
+import Marquee from "@/components/sections/Marquee";
 import Skills from "@/components/sections/Skills";
 import Experience from "@/components/sections/Experience";
 import Projects from "@/components/sections/Projects";
@@ -20,9 +19,8 @@ export default function Home() {
 
       {/* Main content */}
       <main>
-        <Hero />
-        <Marquee />
         <About />
+        <Marquee />
         <Skills />
         <Experience />
         <Projects />

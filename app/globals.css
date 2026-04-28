@@ -1,7 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #fafafa;
+  /* ── Dark theme (default) ── */
+  --bg: #0f0f0f;
+  --bg1: #161616;
+  --bg2: #1f1f1f;
+  --border: rgba(255, 255, 255, 0.08);
+  --border2: rgba(255, 255, 255, 0.16);
+  --t1: #f5f5f7;
+  --t2: #a1a1a6;
+  --t3: #636366;
+  --green: #34d058;
+  --nav-bg: rgba(15, 15, 15, 0.85);
+  --nav-bg-scrolled: rgba(15, 15, 15, 0.92);
+  --font: var(--font-geist), -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html.light {
+  /* ── Light theme ── */
+  --bg: #f5f5f7;
   --bg1: #f3f3f3;
   --bg2: #ebebeb;
   --border: rgba(0, 0, 0, 0.08);
@@ -10,7 +27,8 @@
   --t2: #444444;
   --t3: #888888;
   --green: #16a34a;
-  --font: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  --nav-bg: rgba(245, 245, 247, 0.85);
+  --nav-bg-scrolled: rgba(245, 245, 247, 0.92);
 }
 
 html {
@@ -135,13 +153,12 @@ body {
 /* ── Selection ── */
 ::selection {
   background: rgba(251, 146, 60, 0.35);
-  color: #0a0a0a;
+  color: var(--t1);
 }
 
 /* ── Nav transition ── */
 .nav-base {
-  transition: padding 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-    background 0.5s,
+  transition: background 0.5s,
     border-color 0.5s,
     backdrop-filter 0.5s;
 }
@@ -183,15 +200,54 @@ body {
   color: var(--t1);
 }
 
+/* ── Photo mask — responsive ── */
+.photo-mask {
+  /* Mobile: top + bottom fade only */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 85%, transparent 100%);
+  mask-image:         linear-gradient(to bottom, transparent 0%, black 10%, black 85%, transparent 100%);
+}
+
+@media (min-width: 1024px) {
+  .photo-mask {
+    /* Desktop: add right-side fade for content overlap */
+    -webkit-mask-image:
+      linear-gradient(to bottom, transparent 0%, black 12%, black 78%, transparent 100%),
+      linear-gradient(to right,  transparent 0%, black 14%, black 52%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to bottom, transparent 0%, black 12%, black 78%, transparent 100%),
+      linear-gradient(to right,  transparent 0%, black 14%, black 52%, transparent 100%);
+    mask-composite: intersect;
+  }
+}
+
+/* ── Project description — show fully on mobile, collapse on desktop ── */
+.project-desc {
+  /* Mobile: always visible */
+}
+
+@media (min-width: 1024px) {
+  .project-desc {
+    max-height: 80px;
+    overflow: hidden;
+  }
+}
+
+/* ── Touch feedback ── */
+@media (hover: none) {
+  .stag:active {
+    color: var(--t1);
+    border-color: var(--border2);
+  }
+  .contact-link:active {
+    opacity: 0.6;
+  }
+}
+
 @media (max-width: 767px) {
   html,
   body {
     cursor: auto;
-  }
-
-  .hero-name {
-    line-height: 0.92;
-    white-space: normal;
   }
 
   .exp-card-wrapper {

@@ -34,7 +34,8 @@ const skills = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="px-4 sm:px-6 lg:px-14 pb-12 sm:pb-16 lg:pb-20" style={{ paddingTop: 0 }}>
+    <section id="skills" className="py-10 sm:py-12 lg:py-14">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-14">
       <div className="flex items-end justify-between mb-8 sm:mb-10 lg:mb-12 pb-6 border-b border-[var(--border)]">
         <div>
           <p className="text-[11px] font-medium tracking-[0.14em] uppercase text-[var(--t3)] mb-3">
@@ -67,6 +68,7 @@ export default function Skills() {
             </div>
           </RevealOnScroll>
         ))}
+      </div>
       </div>
     </section>
   );

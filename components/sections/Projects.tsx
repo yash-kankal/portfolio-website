@@ -249,13 +249,8 @@ function WebProjectCard({ project, index }: { project: typeof webProjects[0]; in
           {project.title}
         </h3>
         <p
-          className="text-[14px] sm:text-[13px] leading-[1.8] font-light mb-6"
-          style={{
-            color: "var(--t2)",
-            maxHeight: hovered ? "300px" : "100px",
-            overflow: "hidden",
-            transition: "max-height 0.5s cubic-bezier(0.16,1,0.3,1)",
-          }}
+          className="project-desc text-[14px] sm:text-[13px] leading-[1.8] font-light mb-6 text-[var(--t2)]"
+          style={{ transition: "max-height 0.5s cubic-bezier(0.16,1,0.3,1)", ...(hovered ? { maxHeight: "400px" } : {}) }}
         >
           {project.desc}
         </p>
@@ -357,13 +352,8 @@ function MobileProjectCard({ project }: { project: typeof mobileProjects[0] }) {
           {project.title}
         </h3>
         <p
-          className="text-[14px] sm:text-[13px] leading-[1.8] font-light mb-6"
-          style={{
-            color: "var(--t2)",
-            maxHeight: hovered ? "400px" : "100px",
-            overflow: "hidden",
-            transition: "max-height 0.5s cubic-bezier(0.16,1,0.3,1)",
-          }}
+          className="project-desc text-[14px] sm:text-[13px] leading-[1.8] font-light mb-6 text-[var(--t2)]"
+          style={{ transition: "max-height 0.5s cubic-bezier(0.16,1,0.3,1)", ...(hovered ? { maxHeight: "500px" } : {}) }}
         >
           {project.desc}
         </p>
@@ -393,7 +383,8 @@ function MobileProjectCard({ project }: { project: typeof mobileProjects[0] }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="px-4 sm:px-6 lg:px-14 pb-12 sm:pb-16 lg:pb-20" style={{ paddingTop: 0 }}>
+    <section id="projects" className="py-10 sm:py-12 lg:py-14">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-14">
       {/* Section header */}
       <div className="flex items-end justify-between mb-8 sm:mb-10 lg:mb-12 pb-6 border-b border-[var(--border)]">
         <div>
@@ -436,6 +427,7 @@ export default function Projects() {
             <MobileProjectCard key={p.num} project={p} />
           ))}
         </div>
+      </div>
       </div>
     </section>
   );
