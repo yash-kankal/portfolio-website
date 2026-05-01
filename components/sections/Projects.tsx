@@ -124,10 +124,10 @@ const webProjects = [
   },
   {
     num: "02",
-    title: "SnyderMovies",
+    title: "CuedUp - Your Movies Hub",
     desc: "IMDb alternative for browsing ratings, trailers, cast and crew for any movie. Built with React 19, Vite, and React Router v6. Fetches live data from TMDB API across 8+ endpoints. Zero backend, zero state-management library, all state lives in URL params or local useState keeping the bundle tiny.",
     image: "/projects/snydermovies.png",
-    href: "https://snydermovies.vercel.app/",
+    href: "https://www.cuedup.online",
     stack: ["React.js", "Vite", "React Router", "Tailwind CSS", "TMDB API"],
   },
   {
