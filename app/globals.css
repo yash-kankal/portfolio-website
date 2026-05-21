@@ -48,6 +48,18 @@ body {
   color: var(--t1);
 }
 
+.theme-icon-light {
+  display: none;
+}
+
+html.light .theme-icon-dark {
+  display: none;
+}
+
+html.light .theme-icon-light {
+  display: inline-flex;
+}
+
 
 /* ── Reveal animation ── */
 .reveal {

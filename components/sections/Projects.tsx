@@ -133,10 +133,10 @@ const webProjects = [
   {
     num: "03",
     title: "AI Health Chatbot",
-    desc: "Full-stack AI-powered health assistant with calorie tracking, meal logging, and personalized nutrition workflows. Integrates OpenAI API for recipe recommendations and context-aware guidance through a conversational interface.",
+    desc: "Full-stack AI-powered health assistant with calorie tracking, meal logging, and personalized nutrition workflows. Integrates recipe recommendations and context-aware guidance through a conversational interface.",
     image: "/projects/aichatbot.png",
     href: "https://snyder-health.vercel.app/signup",
-    stack: ["Next.js", "React.js", "TypeScript", "Node.js", "Express.js", "OpenAI API", "PostgreSQL"],
+    stack: ["Next.js", "React.js", "TypeScript", "Node.js", "Express.js", "AI API", "PostgreSQL"],
   },
 ];
 
@@ -154,7 +154,7 @@ const mobileProjects = [
   {
     num: "05",
     title: "SnyderSpend",
-    desc: "AI-powered expense tracking iOS app with real-time cloud sync across sessions. GPT-4o analyses actual spending data to deliver personalised insights, predictions, and saving opportunities. Auto-categorises every expense using AI so nothing needs to be tagged manually. Built with SwiftUI and Apple's Liquid Glass design language for a polished native feel.",
+    desc: "AI-powered expense tracking iOS app with real-time cloud sync across sessions. An AI insights engine analyses actual spending data to deliver personalised insights, predictions, and saving opportunities. Auto-categorises every expense using AI so nothing needs to be tagged manually. Built with SwiftUI and Apple's Liquid Glass design language for a polished native feel.",
     image: "/projects/snyderspend.png",
     href: "",
     platform: "iOS",
@@ -166,11 +166,11 @@ const mobileProjects = [
       "/projects/snyderspend5.png",
       "/projects/snyderspend6.png",
     ],
-    stack: ["SwiftUI", "Firebase Auth", "Firestore", "OpenAI GPT-4o", "Liquid Glass"],
+    stack: ["SwiftUI", "Firebase Auth", "Firestore", "AI Insights", "Liquid Glass"],
   },
 ];
 
-function WebProjectCard({ project, index }: { project: typeof webProjects[0]; index: number }) {
+function WebProjectCard({ project }: { project: typeof webProjects[0] }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState(false);
 
@@ -407,8 +407,8 @@ export default function Projects() {
           <div className="flex-1 h-px bg-[var(--border)]" />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {webProjects.map((p, i) => (
-            <WebProjectCard key={p.num} project={p} index={i} />
+          {webProjects.map((p) => (
+            <WebProjectCard key={p.num} project={p} />
           ))}
         </div>
       </div>

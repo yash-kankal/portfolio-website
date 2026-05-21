@@ -5,7 +5,7 @@ import {
   SiJetpackcompose, SiPostgresql, SiRedis, SiMongodb,
   SiMysql, SiElasticsearch, SiDocker, SiKubernetes,
   SiNginx, SiGithubactions, SiPrisma, SiCplusplus,
-  SiOpenai, SiGit,
+  SiGit,
 } from "react-icons/si";
 import { FaJava, FaDatabase, FaAws } from "react-icons/fa";
 import type { IconType } from "react-icons";
@@ -68,7 +68,6 @@ const iconMap: Record<string, IconType> = {
 
   // Project extras
   JWT: SiGit,
-  "OpenAI API": SiOpenai,
 };
 
 const colorMap: Record<string, string> = {
@@ -114,7 +113,6 @@ const colorMap: Record<string, string> = {
   CodePipeline: "#FF9900",
   Prisma: "#2D3748",
   JWT: "#000000",
-  "OpenAI API": "#412991",
 };
 
 interface Props {

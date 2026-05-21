@@ -44,7 +44,6 @@ const navLinks = [
 
 export default function Nav() {
   const [scrolled,  setScrolled]  = useState(false);
-  const [isDark,    setIsDark]    = useState(true);
   const [menuOpen,  setMenuOpen]  = useState(false);
 
   // Scroll → compact nav
@@ -62,15 +61,9 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [menuOpen]);
 
-  // Read theme set by inline script before hydration
-  useEffect(() => {
-    setIsDark(!document.documentElement.classList.contains("light"));
-  }, []);
-
   const toggleTheme = () => {
-    const next = !isDark;
-    setIsDark(next);
-    if (next) {
+    const nextIsDark = document.documentElement.classList.contains("light");
+    if (nextIsDark) {
       document.documentElement.classList.remove("light");
       localStorage.setItem("theme", "dark");
     } else {
@@ -152,7 +145,8 @@ export default function Nav() {
             aria-label="Toggle theme"
             className="w-8 h-8 flex items-center justify-center rounded-full text-[var(--t2)] hover:text-[var(--t1)] border border-[var(--border)] hover:border-[var(--border2)] transition-colors cursor-pointer"
           >
-            {isDark ? <SunIcon /> : <MoonIcon />}
+            <span className="theme-icon-dark"><SunIcon /></span>
+            <span className="theme-icon-light"><MoonIcon /></span>
           </button>
           <button
             onClick={() => scrollTo("contact")}
@@ -169,7 +163,8 @@ export default function Nav() {
             aria-label="Toggle theme"
             className="w-11 h-11 flex items-center justify-center text-[var(--t2)] active:text-[var(--t1)] transition-colors"
           >
-            {isDark ? <SunIcon /> : <MoonIcon />}
+            <span className="theme-icon-dark"><SunIcon /></span>
+            <span className="theme-icon-light"><MoonIcon /></span>
           </button>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
